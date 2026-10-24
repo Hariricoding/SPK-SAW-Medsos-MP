@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Custom Properties ────────────────────────────────── */
+:root {
+  --color-primary:       #287C76;
+  --color-primary-light: #55AAA1;
+  --color-accent:        #FFF5AE;
+  --color-bg:            #F8FAF9;
+  --color-text:          #263238;
+  --color-text-muted:    #607D8B;
+  --color-border:        #E0E7E6;
+  --color-danger:        #E53E3E;
+  --color-success:       #38A169;
+  --color-warning:       #D69E2E;
+  --sidebar-width:       240px;
+  --navbar-height:       64px;
+  --card-radius:         12px;
+  --card-shadow:         0 2px 8px rgba(40,124,118,0.08);
+  --transition:          0.2s ease;
+}
+
+/* ── Base ─────────────────────────────────────────────── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Scrollbar ────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #F8FAF9; }
+::-webkit-scrollbar-thumb { background: #C8D8D6; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #287C76; }
+
+/* ── Page Transition ──────────────────────────────────── */
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.page-enter {
+  animation: pageEnter 0.25s ease forwards;
+}
+
+/* ── Shimmer Loading ──────────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ── Print Styles ─────────────────────────────────────── */
+@media print {
+  .no-print,
+  .sidebar,
+  .navbar,
+  .btn-print-hide { display: none !important; }
+
+  .print-content {
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+  }
+
+  body {
+    background: white;
+    font-size: 12px;
+    color: #000;
+  }
+
+  table { border-collapse: collapse; width: 100%; }
+  th, td { border: 1px solid #ccc; padding: 6px 8px; font-size: 11px; }
+  th { background: #f5f5f5 !important; }
+
+  .page-break { page-break-after: always; }
+
+  h1, h2, h3 { color: #000 !important; }
+}
+
+/* ── Utility Classes ──────────────────────────────────── */
+.card {
+  background: white;
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--color-border);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+
+.card:hover {
+  box-shadow: 0 8px 24px rgba(40,124,118,0.12);
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.table-container {
+  overflow-x: auto;
+  border-radius: var(--card-radius);
+}
+
+/* Input focus ring */
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--color-primary) !important;
+  box-shadow: 0 0 0 3px rgba(40,124,118,0.12);
+}
